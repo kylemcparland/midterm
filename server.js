@@ -34,7 +34,8 @@ const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const loginRoutes = require('./routes/login');
 const logoutRoutes = require('./routes/logout');
-const { getAllMovies } = require('./db/queries/movies');
+const moviesRoutes = require('./routes/movies');
+// const { getAllMovies } = require('./db/queries/movies');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -44,6 +45,7 @@ app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/login', loginRoutes);
 app.use('/logout', logoutRoutes);
+app.use('/movies', moviesRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -55,7 +57,7 @@ app.get('/', (req, res) => {
   movies.getAllMovies()
     .then(moviesData => {
       const templateVars = {
-        cookie: req.header.cookie, // Store cookie information in templateVars
+        cookie: req.headers.cookie, // Store cookie information in templateVars
         movies: moviesData // Store movie database information in templateVars
       };
       res.render('index', templateVars)
