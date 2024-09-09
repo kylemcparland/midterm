@@ -13,8 +13,18 @@
   padding-top: 5px;
   padding-bottom: 5px;
   margin-right: 40px;
+  margin-left: 5px;
   border-radius: 1.5rem; 
   color: white;
   background-color: blue; 
   text-decoration: none;
+}
+
+.loggedInAs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  font-size: 14px;
 }
