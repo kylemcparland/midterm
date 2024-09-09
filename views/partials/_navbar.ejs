@@ -6,15 +6,14 @@
     </span>
   <% } else { %>
 
-    <% if (cookie==="userType=user") { %>
-      <p>Logged in as USER</p>
-    <% } %>
-
-    <% if (cookie==="userType=admin") { %>
-      <p>Logged in as ADMIN</p>
-    <% } %>
-
-    <span>
+    <span class="loggedInAs">
+      <% if (cookie==="userType=user") { %>
+        <p>Logged in as USER</p>
+      <% } %>
+  
+      <% if (cookie==="userType=admin") { %>
+        <p>Logged in as ADMIN</p>
+      <% } %>
       <a class="loginButtonStyling" href="/logout">Logout</a>
     </span>
   <% } %>
