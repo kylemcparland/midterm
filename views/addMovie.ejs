@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/nav.css">
+  <link rel="stylesheet" href="/styles/header.css">
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+</head>
+
+<body>
+
+  <!-- Navbar pulled from partials/ directory -->
+  <%- include('partials/_navbar') %>
+
+    <main>
+
+      <form action="/addMovie" method="POST" id="addMovieForm">
+
+        <div>
+          <label for="addMovieForm_Title">Title:</label>
+          <input type="text" id="title" name="title">
+        </div>
+
+        <div>
+          <label for="addMovieForm_Year">Year:</label>
+          <input type="text" name="year" id="year">
+        </div>
+
+        <div>
+          <label for="addMovieForm_Price">Price:</label>
+          <input type="text" id="price" name="price">
+        </div>
+
+        <div>
+          <label for="addMovieForm_Quality">Quality:</label>
+          <input type="text" id="quality" name="quality">
+        </div>
+
+        <div>
+          <label for="addMovie_Genres:">Genres:</label>
+          <select id="genre_id " name="genre_id">
+              <option value="1">Horror</option>
+              <option value="2">Thriller</option>
+              <option value="3">Comedy</option>
+              <option value="4">Action</option>
+              <option value="5">Family</option>
+              <option value="6">Crime</option>
+          </select>
+        </div> 
+
+        <div>
+          <button type="submit">Add</button>
+        </div>
+
+
+
+      </form>
+
+    </main>
+
+</body>
+
+</html>
