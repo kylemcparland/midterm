@@ -26,9 +26,10 @@
 
   <header>
     <div id="searchBarStyling">
-      <form action="" method="">
-        <span>Search: </span><input type="text">
-        <button>Search</button>
+      <form action="/movies" method="GET">
+        <span>Search: </span>
+        <input type="text" name="query">
+        <button type="submit">Search</button>
       </form>
     </div>
   </header>
@@ -36,10 +37,23 @@
   <main>
 
     <section>
-      <!-- Place carousel for featured items here! -->
+
     </section>
 
     <!-- products go below here! -->
+
+    <section class = "product-feed">
+      <% movies.forEach(movie => { %>
+        <div class="product-item">
+          <h2><%= movie.title %></h2>
+          <p><%= movie.genre_name %></p>
+          <p><%= movie.year %></p>
+          <p>Rent now for: <%= movie.price / 100%>$</p>
+          <p>Movie quality: <%= movie.quality %></p>
+        </div>
+      <% }) %>
+    </section>
+
 
   </main>
 
