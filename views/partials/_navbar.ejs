@@ -1,0 +1,22 @@
+<nav>
+  <span class="businessNameStyling"><b>Movie Site</b></span>
+  <% if (!cookie) { %>
+    <span>
+      <a class="loginButtonStyling" href="/login">Login</a>
+    </span>
+  <% } else { %>
+
+    <% if (cookie==="userType=user") { %>
+      <p>Logged in as USER</p>
+    <% } %>
+
+    <% if (cookie==="userType=admin") { %>
+      <p>Logged in as ADMIN</p>
+    <% } %>
+
+    <span>
+      <a class="loginButtonStyling" href="/logout">Logout</a>
+    </span>
+  <% } %>
+  </span>
+</nav>

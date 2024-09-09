@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Login</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/nav.css">
+  <link rel="stylesheet" href="/styles/login.css" />
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+</head>
+
+<body>
+
+  <!-- Navbar pulled from partials/ directory -->
+  <%- include('partials/_navbar') %>
+
+  <header>
+    <!-- Empty on login page? -->
+  </header>
+
+  <main>
+
+    <!-- LOGIN FORM username/password forms + button -->
+    <h2>Login:</h2>
+
+    <form action="/login" method="POST">
+      <div>
+        <label for="email">Email address</label>
+        <input class="form-control" type="email" name="email" placeholder="Email" />
+      </div>
+
+      <div>
+        <label for="password">Password</label>
+        <input class="form-control" type="password" name="password" placeholder="Password" />
+      </div>
+
+      <button type="submit">Login</button>
+    </form>
+
+    <!-- Testing if /login registers you are a USER or ADMIN + testing login reminder-->
+    <p>Cheat sheet: ADMIN: admin@1.com / USER: anything@anything.com</p>
+
+    <% if (cookie==="userType=user" ) { %>
+      <% console.log("LOGGED IN AS USER")%>
+        <% } %>
+
+          <% if (cookie==="userType=admin" ) { %>
+            <% console.log("LOGGED IN AS ADMIN")%>
+              <% } %>
+
+  </main>
+</body>
+
+</html>
