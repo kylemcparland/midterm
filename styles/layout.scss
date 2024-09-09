@@ -1,6 +1,25 @@
-// See: https://sass-lang.com/
 
-body,
-html {
-  margin: 0;
+//Controls layout of the Nav
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 60px;
+  color: black;
+  top: 0;
+  border-bottom: solid;
+  border-color: lightgrey;
+  border-width: 1px;
+}
+
+
+//Controls the layout of the header
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20px;
 }
