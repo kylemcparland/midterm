@@ -36,10 +36,21 @@
   <main>
 
     <section>
-      <!-- Place carousel for featured items here! -->
+
     </section>
 
     <!-- products go below here! -->
+
+    <section class = "product-feed">
+      <% movies.forEach(movie => { %>
+        <div class="product-item">
+          <h2><%= movie.title %></h2>
+          <p><%= movie.year %></p>
+          <p>Rent now for: <%= movie.price / 100%>$</p>
+        </div>
+      <% }) %>
+    </section>
+
 
   </main>
 
