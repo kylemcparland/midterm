@@ -1,5 +1,5 @@
 <nav>
-  <span class="businessNameStyling">
+  <span>
     <a id="logo" href="/">Movie Site</a>
   </span>
   <% if (!cookie) { %>
@@ -15,6 +15,7 @@
   
       <% if (cookie==="userType=admin") { %>
         <p>Logged in as: ADMIN</p>
+        <a class="addMovieButtonStyling" href="/addMovie">Add Movie</a>
       <% } %>
       <a class="loginButtonStyling" href="/logout">Logout</a>
     </span>
