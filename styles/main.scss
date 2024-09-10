@@ -1,20 +1,20 @@
-
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   width: 100vw;
   background: white;
-  font-size: 16px;
-  font-weight: 300, 400;
+  font-size: 1rem; /* Base font size */
+  font-weight: 300; /* Assuming you want only one weight */
   font-family: "Source Sans 3", sans-serif;
 }
 
 main {
   display: flex;
   align-self: center;
-  margin-top: 20px;
+  margin-top: 1.25rem; /* 20px as 1.25rem based on 16px base font size */
   width: 80vw;
   height: 100vh;
 }
+
 

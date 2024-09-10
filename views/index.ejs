@@ -29,6 +29,14 @@
       <form action="/movies" method="GET">
         <span>Search: </span>
         <input type="text" name="query">
+        <span>Sort by: </span>
+        <select name="sort">
+          <option value="">--Select--</option>
+          <option value="genre">Genre</option>
+          <option value="year">Year</option>
+          <option value="priceHighToLow">Price (Descending)</option>
+          <option value="priceLowToHigh">Price (Ascending)</option>
+        </select>
         <button type="submit">Search</button>
       </form>
     </div>

@@ -3,8 +3,8 @@ const router = express.Router();
 const { getAllMovies } = require('../db/queries/movies');
 
 router.get("/", (req, res) => {
-  const queryParams = { title: req.query.query };
-
+  const queryParams = { title: req.query.query, sort: req.query.sort };
+  console.log(req.query.action)
   getAllMovies(queryParams)
     .then(moviesData => {
       const templateVars = {
