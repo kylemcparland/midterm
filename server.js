@@ -4,6 +4,7 @@ require('dotenv').config();
 // Web server config
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
+const cookieParser = require('cookie-parser')
 const morgan = require('morgan');
 const movies = require('./db/queries/movies')
 
@@ -17,6 +18,7 @@ app.set('view engine', 'ejs');
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(
   '/styles',
   sassMiddleware({
@@ -59,9 +61,10 @@ app.get('/', (req, res) => {
   movies.getAllMovies()
     .then(moviesData => {
       const templateVars = {
-        cookie: req.headers.cookie, // Store cookie information in templateVars
-        movies: moviesData // Store movie database information in templateVars
+        cookie: req.cookies, // Store cookie information in templateVars
+        movies: moviesData, // Store movie database information in templateVars
       };
+      console.log(req.headers.cookie)
       res.render('index', templateVars)
     })
 });
