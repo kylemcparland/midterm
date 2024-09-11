@@ -2,7 +2,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   background: white;
   font-size: 1rem; /* Base font size */
   font-weight: 300; /* Assuming you want only one weight */
@@ -12,9 +12,25 @@ body {
 main {
   display: flex;
   align-self: center;
+  justify-content: center;
   margin-top: 1.25rem; /* 20px as 1.25rem based on 16px base font size */
   width: 80vw;
   height: 100vh;
 }
 
+.product-feed {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  height: max-content;
+  gap: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
 
+.product-item {
+  background-color: #d2d7eb;
+  padding: 10px;
+  width: 225px;
+  height: 300px;
+}

@@ -3,7 +3,7 @@ const db = require('../connection');
 
 const getAllMovies = (options) => {
   // Pull title from search query...
-  const { title, sort } = options || {};
+  const { title, genre, sort, maxPrice, year, minQuality } = options || {};
   const queryParams = [];
 
   // Initialize query...
@@ -14,10 +14,35 @@ const getAllMovies = (options) => {
   JOIN genres ON movies.genre_id = genres.id
   WHERE 1=1 `;
 
+  // TITLE searched...
   if (title) {
     // Use ILIKE for case-insensitive search
     queryParams.push(`%${title}%`);
-    queryString += `AND (title ILIKE $${queryParams.length} OR genres.name ILIKE $${queryParams.length}) `;
+    queryString += `AND title ILIKE $${queryParams.length} `;
+  }
+
+  // GENRE selected...
+  if (genre > 0) {
+    queryParams.push(genre);
+    queryString += `AND movies.genre_id = $${queryParams.length} `;
+  }
+
+  // MAX PRICE selected...
+  if (maxPrice) {
+    queryParams.push(maxPrice);
+    queryString += `AND price <= $${queryParams.length} `;
+  }
+
+  // YEAR selected...
+  if (year) {
+    queryParams.push(year);
+    queryString += `AND year = $${queryParams.length} `;
+  }
+
+  // MINIMUM QUALITY selected...
+  if (minQuality) {
+    queryParams.push(minQuality);
+    queryString += `AND quality >= $${queryParams.length} `;
   }
 
   if (options && options.sort) {
@@ -32,11 +57,16 @@ const getAllMovies = (options) => {
     }
   }
 
+  // console.log(queryString);
+  // console.log(queryParams);
   return db.query(queryString, queryParams)
     .then(data => {
-      console.log(data.rows)
+      // console.log(data.rows)
       console.log(queryString)
       return data.rows;
+    })
+    .catch(err => {
+      console.log("Error:", err);
     });
 };
 

@@ -2,6 +2,25 @@
 
 #searchBarStyling {
   display: flex;
-  font-size: 20px;
+  font-size: large;
 }
 
+#advanced_features {
+  font-size: medium;
+}
+
+#sort_by {
+  width: 110px
+}
+
+#max_price {
+  width: 50px
+}
+
+#year {
+  width: 70px
+}
+
+#min_quality {
+  width: 50px
+}
