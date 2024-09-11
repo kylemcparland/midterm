@@ -62,7 +62,6 @@ const getAllMovies = (options) => {
   return db.query(queryString, queryParams)
     .then(data => {
       // console.log(data.rows)
-      console.log(queryString)
       return data.rows;
     })
     .catch(err => {

@@ -64,7 +64,6 @@ app.get('/', (req, res) => {
         cookie: req.cookies, // Store cookie information in templateVars
         movies: moviesData, // Store movie database information in templateVars
       };
-      console.log(req.headers.cookie)
       res.render('index', templateVars)
     })
 });

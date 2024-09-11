@@ -2,8 +2,6 @@
   <span>
     <a id="logo" href="/">Movie Site</a>
   </span>
-  <% console.log(cookie.userType) %>
-  <% console.log(cookie.userId) %>
   <% if (!cookie.userType) { %>
     <span>
       <a class="loginButtonStyling" href="/login">Login</a>
@@ -11,7 +9,6 @@
   <% } else { %>
     <span class="loggedInAs">
       <% if (cookie.userType === "user") { %>
-        <% console.log("USER!!!!")%>
         <p>Logged in as: USER</p>
       <% } %>
 
