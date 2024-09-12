@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getAllMovies } = require('../db/queries/movies');
 
+// GET MOVIES:
 router.get("/", (req, res) => {
   const queryParams = {
     title: req.query.query,
@@ -17,11 +18,16 @@ router.get("/", (req, res) => {
   getAllMovies(queryParams)
     .then(moviesData => {
       const templateVars = {
-        cookie: req.headers.cookie, // Store cookie information in templateVars
+        cookie: req.cookies, // Store cookie information in templateVars
         movies: moviesData // Store movie database information in templateVars
       };
       res.render('index', templateVars)
     })
 });
+
+// DELETE MOVIE:
+router.post("/movies/:id/delete", (req, res) => {
+  console.log(req.query);
+})
 
 module.exports = router;
