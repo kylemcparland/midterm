@@ -83,7 +83,6 @@
     </section>
 
     <!-- products go below here! -->
-
     <section class = "product-feed">
       <% movies.forEach(movie => { %>
         <div class="product-item">
@@ -98,7 +97,7 @@
            <form action="/movies/<%= movie.title %>/delete" method="POST" style="display:inline">
             <button type="submit">Delete</button>
            </form>
-          <% } %>
+          <% }%>
 
         </div>
       <% }) %>

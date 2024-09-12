@@ -10,6 +10,7 @@
     <span class="loggedInAs">
       <% if (cookie.userType === "user") { %>
         <p>Logged in as: USER</p>
+        <a class="favouritesButtonStyling" href="/favourites">My Favourites</a>
       <% } %>
 
       <% if (cookie.userType === 'admin') { %>

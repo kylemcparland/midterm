@@ -18,11 +18,11 @@ router.post("/", (req, res) => {
     RETURNING *;
     `;
     const values = [title, year, price, quality, genre_id];
-  
+
     console.log(values)
     db.query(queryString, values)
-      .then(result => {
-        res.json(result.rows[0]);
+      .then(() => {
+        return res.redirect(302, "/")
       })
       .catch(err => {
        console.log('query error:', err);

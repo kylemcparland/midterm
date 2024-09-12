@@ -38,7 +38,8 @@ const loginRoutes = require('./routes/login');
 const logoutRoutes = require('./routes/logout');
 const addMovieRoutes = require('./routes/addMovie')
 const moviesRoutes = require('./routes/movies');
-// const { getAllMovies } = require('./db/queries/movies');
+const favouritesRoutes = require('./routes/favourites');
+ // const { getAllMovies } = require('./db/queries/movies');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -50,6 +51,7 @@ app.use('/login', loginRoutes);
 app.use('/logout', logoutRoutes);
 app.use('/addMovie', addMovieRoutes);
 app.use('/movies', moviesRoutes);
+app.use('/favourites', favouritesRoutes)
 // Note: mount other resources here, using the same pattern above
 
 // Home page
