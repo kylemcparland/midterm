@@ -69,4 +69,17 @@ const getAllMovies = (options) => {
     });
 };
 
-module.exports = { getAllMovies };
+const deleteMovie = (title) => {
+  const queryParams = [title];
+  const queryString = `DELETE FROM movies WHERE title = $1`;
+
+  return db.query(queryString, queryParams)
+    .then(data => {
+      return data;
+    })
+    .catch(err => {
+      console.log("Error:", err);
+    });
+};
+
+module.exports = { getAllMovies, deleteMovie };

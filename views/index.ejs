@@ -92,6 +92,14 @@
           <p><%= movie.year %></p>
           <p>Rent now for: $<%= movie.price / 100%></p>
           <p>Movie quality: <%= movie.quality %></p>
+
+          <!-- Delete Movie Button -->
+           <% if (cookie.userType === 'admin') { %>
+           <form action="/movies/<%= movie.title %>/delete" method="POST" style="display:inline">
+            <button type="submit">Delete</button>
+           </form>
+          <% } %>
+
         </div>
       <% }) %>
     </section>

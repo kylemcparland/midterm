@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getAllMovies } = require('../db/queries/movies');
+const { getAllMovies, deleteMovie } = require('../db/queries/movies');
 
 // GET MOVIES:
 router.get("/", (req, res) => {
@@ -26,8 +26,18 @@ router.get("/", (req, res) => {
 });
 
 // DELETE MOVIE:
-router.post("/movies/:id/delete", (req, res) => {
-  console.log(req.query);
-})
+router.post("/:id/delete", (req, res) => {
+  console.log(req.params.id);
+  const movieTitle = req.params.id;
+
+  deleteMovie(movieTitle)
+    .then(() => {
+      res.redirect('/');
+    })
+    .catch(err => {
+      console.log("Error deleting movie:", err);
+      res.status(500).send("Server error");
+    });
+});
 
 module.exports = router;
