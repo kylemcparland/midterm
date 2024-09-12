@@ -95,10 +95,17 @@
 
           <!-- Delete Movie Button -->
            <% if (cookie.userType === 'admin') { %>
-           <form action="/movies/<%= movie.title %>/delete" method="POST" style="display:inline">
+           <form action="/movies/<%= movie.movie_id %>/delete" method="POST" style="display:inline">
             <button type="submit">Delete</button>
            </form>
           <% } %>
+
+          <!-- Delete Movie Button -->
+          <% if (cookie.userType === 'admin') { %>
+            <form action="/movies/<%= movie.title %>/delete" method="POST" style="display:inline">
+              <button type="submit">Delete</button>
+            </form>
+            <% } %>
 
         </div>
       <% }) %>

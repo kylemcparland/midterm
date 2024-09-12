@@ -69,9 +69,9 @@ const getAllMovies = (options) => {
     });
 };
 
-const deleteMovie = (title) => {
-  const queryParams = [title];
-  const queryString = `DELETE FROM movies WHERE title = $1`;
+const deleteMovie = (movieId) => {
+  const queryParams = [movieId];
+  const queryString = `DELETE FROM movies WHERE id = $1`;
 
   return db.query(queryString, queryParams)
     .then(data => {
