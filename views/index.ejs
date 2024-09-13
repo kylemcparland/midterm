@@ -98,10 +98,14 @@
             <%= '- SOLD!' %>
             <% } %>
           </h2>
-          <p><%= movie.genre_name %></p>
-          <p><%= movie.year %></p>
-          <p>Rent now for: $<%= movie.price / 100%></p>
-          <p>Movie quality: <%= movie.quality %></p>
+
+          <div class="movie-info">
+            <p><%= movie.genre_name %></p>
+            <p><%= movie.year %></p>
+            <p>Rent now for: $<%= movie.price / 100%></p>
+            <p>Movie quality: <%= movie.quality %></p>
+            <p class="rt_score">🍅RT Score: <%= movie.rotten_tomatoes_score %></p>
+          </div>
 
           <!-- Delete Movie Button -->
            <% if (cookie.userType === 'admin') { %>

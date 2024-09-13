@@ -59,15 +59,7 @@ app.use('/favourites', favouritesRoutes)
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  // Fetch all movies in database
-  movies.getAllMovies()
-    .then(moviesData => {
-      const templateVars = {
-        cookie: req.cookies, // Store cookie information in templateVars
-        movies: moviesData, // Store movie database information in templateVars
-      };
-      res.render('index', templateVars)
-    })
+  res.redirect('/movies');
 });
 
 app.listen(PORT, () => {

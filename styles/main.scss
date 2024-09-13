@@ -75,3 +75,20 @@ main {
     background-color: #af2424;
   }
 }
+
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.movie-info p {
+margin: 0px;
+}
+
+.rt_score {
+  color: #299d13;
+  font-weight: bold;
+  font-size: large;
+}
