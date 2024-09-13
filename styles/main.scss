@@ -41,3 +41,37 @@ main {
   width: 225px;
   height: 300px;
 }
+
+#delete_button {
+  background-color: #5c5c5c;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 9px 10px;
+  text-align: center;
+
+  &:hover {
+    background-color: #919191;
+  }
+
+  &:active {
+    background-color: #2e2e2e;
+  }
+}
+
+#sold_button {
+  background-color: #ff3939;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 9px 10px;
+  text-align: center;
+
+  &:hover {
+    background-color: #ff7e7e;
+  }
+
+  &:active {
+    background-color: #af2424;
+  }
+}

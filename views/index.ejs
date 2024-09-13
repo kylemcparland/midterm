@@ -106,14 +106,14 @@
           <!-- Delete Movie Button -->
            <% if (cookie.userType === 'admin') { %>
            <form action="/movies/<%= movie.movie_id %>/delete" method="POST" style="display:inline">
-            <button type="submit">Delete</button>
+            <button type="submit" id="delete_button">Delete</button>
            </form>
           <% }%>
 
           <!-- Mark Movie as Sold Button -->
           <% if (cookie.userType === 'admin' && !movie.is_sold) { %>
           <form action="/movies/<%= movie.movie_id %>" method="POST" style="display:inline">
-            <button type="submit">Mark as SOLD!</button>
+            <button type="submit" id="sold_button">Mark as SOLD!</button>
           </form>
           <% } %>
 
