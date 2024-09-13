@@ -83,7 +83,6 @@
     </section>
 
     <!-- products go below here! -->
-
     <section class = "product-feed">
       <% movies.forEach(movie => { %>
 
@@ -109,7 +108,7 @@
            <form action="/movies/<%= movie.movie_id %>/delete" method="POST" style="display:inline">
             <button type="submit">Delete</button>
            </form>
-          <% } %>
+          <% }%>
 
           <!-- Mark Movie as Sold Button -->
           <% if (cookie.userType === 'admin' && !movie.is_sold) { %>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/nav.css">
+  <link rel="stylesheet" href="/styles/header.css">
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+</head>
+
+<body>
+
+  <!-- Navbar pulled from partials/ directory -->
+  <%- include('partials/_navbar') %>
+
+  <header>
+    <div id="favouriteHeader">
+      <h2>My Favourites</h2>
+    </div>
+  </header>
+
+  <main>
+
+    <section>
+
+    </section>
+
+    <!-- products go below here! -->
+
+    <section class = "product-feed">
+      <% movies.forEach(movie => { %>
+        <div class="product-item">
+          <h2><%= movie.title %></h2>
+          <p><%= movie.genre_name %></p>
+          <p><%= movie.year %></p>
+          <p>Rent now for: $<%= movie.price / 100%></p>
+          <p>Movie quality: <%= movie.quality %></p>
+          <!-- Delete Movie Button -->
+           <% if (cookie.userType === 'admin') { %>
+           <form action="/movies/<%= movie.title %>/delete" method="POST" style="display:inline">
+            <button type="submit">Delete</button>
+           </form>
+           <form action="/movies/<%= movie.title %>/delete" method="POST" style="display:inline"></form>
+            <button type="submit">Favourite</button>
+           </form>
+          <% } %>
+
+        </div>
+      <% }) %>
+    </section>
+
+
+  </main>
+
+</body>
+
+</html>
