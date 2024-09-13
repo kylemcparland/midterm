@@ -29,7 +29,55 @@
   <%- include('partials/_navbar') %>
 
   <header>
-    <!-- Your header content here -->
+    <div id="searchBarStyling">
+
+      <form action="/movies" method="GET">
+        <span>Search: </span>
+        <input type="text" name="query" placeholder="Movie Title">
+
+        <!-- Sort -->
+        <span>Sort by: </span>
+        <select name="sort" id="sort_by">
+          <option value="">--Select--</option>
+          <option value="genre">Genre</option>
+          <option value="year">Year</option>
+          <option value="priceLowToHigh">Least Expensive</option>
+          <option value="priceHighToLow">Most Expensive</option>
+        </select>
+
+        <button type="submit">Search</button>
+
+        <!-- Advanced Features -->
+        <div id="advanced_features">
+        <h4>Advanced Filters:</h4>
+
+        <!-- Filter for Genre -->
+        <label for="select_genre">Genre:</label>
+        <select id="select_genre" name="select_genre">
+          <option value="0">Anything</option>
+          <option value="1">Horror</option>
+          <option value="2">Thriller</option>
+          <option value="3">Comedy</option>
+          <option value="4">Action</option>
+          <option value="5">Family</option>
+          <option value="6">Crime</option>
+        </select>
+
+        <!-- Max Price -->
+        <label for="max_price">Max Price:</label>
+        <input type="number" min="0" name="max_price" id="max_price" placeholder="$">
+
+        <!-- Year -->
+        <label for="year">Year:</label>
+        <input type="number" min="1976" name="year" id="year" placeholder="1984">
+
+        <!-- Quality -->
+        <label for="min_quality">Minimum Quality:</label>
+        <input type="number" min="1" max="5" name="min_quality" id="min_quality" placeholder="5">
+        </div>
+
+      </form>
+    </div>
   </header>
 
   <main>
