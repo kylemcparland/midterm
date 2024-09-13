@@ -15,6 +15,9 @@
   <link rel="stylesheet" href="/styles/nav.css">
   <link rel="stylesheet" href="/styles/header.css">
 
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
 </head>
@@ -33,21 +36,27 @@
   <main>
 
     <section>
-      <% if (movies.length === 0) {%>
+      <% if (favourites.length === 0) {%>
       No favourites yet
       <%}%>
     </section>
 
     <!-- products go below here! -->
-
     <section class = "product-feed">
-      <% movies.forEach(movie => { %>
+      <% favourites.forEach(favourite => { %>
         <div class="product-item">
-          <h2><%= movie.title %></h2>
-          <p><%= movie.genre_name %></p>
-          <p><%= movie.year %></p>
-          <p>Rent now for: $<%= movie.price / 100%></p>
-          <p>Movie quality: <%= movie.quality %></p>
+          <!-- Heart Icon Button -->
+            <form action="/favourites/<%= favourite.movie_id %>/delete" method="POST" class="heart-icon-form">
+              <input type="hidden" name="movie_id" value="<%= favourite.movie_id %>">
+              <button type="submit" class="heart-icon-button">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+              </button>
+            </form>
+          <h2><%= favourite.title %></h2>
+          <p><%= favourite.genre_name %></p>
+          <p><%= favourite.year %></p>
+          <p>Rent now for: $<%= favourite.price / 100%></p>
+          <p>Movie quality: <%= favourite.quality %></p>
           <!-- Delete Movie Button -->
            <% if (cookie.userType === 'admin') { %>
            <form action="/movies/<%= movie.title %>/delete" method="POST" style="display:inline">

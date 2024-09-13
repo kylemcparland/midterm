@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const favourites = require('../db/queries/favourites')
+const movies = require('../db/queries/movies')
 const db = require('../db/connection');
 
 
@@ -9,12 +10,13 @@ router.get("/", (req, res) => {
     .then(favouritesData => {
       const templateVars = {
         cookie: req.cookies,
-        movies: favouritesData
+        favourites: favouritesData
       };
       res.render('favourites', templateVars)
     })
 });
 
+// Favourite a movie, then reload the page
 router.post("/:id", (req, res) => {
   const movieId = req.params.id;
   const userId = req.cookies.userId;
@@ -29,13 +31,11 @@ router.post("/:id", (req, res) => {
     })
 })
 
+// Un-favourite a movie, then reload the page
 router.post("/:id/delete", (req, res) => {
   const movieId = req.params.id;
   const userId = req.cookies.userId;
-
-  // Update the query string to delete from favourites instead of inserting
   const queryString = `DELETE FROM favourites WHERE user_id = $1 AND movie_id = $2`;
-
   db.query(queryString, [userId, movieId])
     .then(() => {
       res.redirect('back');
