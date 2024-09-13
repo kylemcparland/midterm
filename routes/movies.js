@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getAllMovies, deleteMovie } = require('../db/queries/movies');
+const { getAllMovies, deleteMovie, markAsSold } = require('../db/queries/movies');
 
 // GET MOVIES:
 router.get("/", (req, res) => {
@@ -27,15 +27,28 @@ router.get("/", (req, res) => {
 
 // DELETE MOVIE:
 router.post("/:id/delete", (req, res) => {
-  console.log(req.params.id);
-  const movieTitle = req.params.id;
+  const movieId = req.params.id;
 
-  deleteMovie(movieTitle)
+  deleteMovie(movieId)
     .then(() => {
       res.redirect('/');
     })
     .catch(err => {
       console.log("Error deleting movie:", err);
+      res.status(500).send("Server error");
+    });
+});
+
+// MARK AS SOLD:
+router.post("/:id", (req, res) => {
+  const movieId = req.params.id;
+
+  markAsSold(movieId)
+    .then(() => {
+      res.redirect('/');
+    })
+    .catch(err => {
+      console.log("Error marking movie as sold:", err);
       res.status(500).send("Server error");
     });
 });

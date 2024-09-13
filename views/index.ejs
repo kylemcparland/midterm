@@ -86,8 +86,19 @@
 
     <section class = "product-feed">
       <% movies.forEach(movie => { %>
-        <div class="product-item">
-          <h2><%= movie.title %></h2>
+
+        <!-- Assign unique tag if movie is_sold === true -->
+        <% if (movie.is_sold) { %>
+        <div class="product-item-SOLD">
+          <% } else { %>
+            <div class="product-item">
+            <% } %>
+
+          <h2><%= movie.title %>
+          <% if (movie.is_sold) { %>
+            <%= '- SOLD!' %>
+            <% } %>
+          </h2>
           <p><%= movie.genre_name %></p>
           <p><%= movie.year %></p>
           <p>Rent now for: $<%= movie.price / 100%></p>
@@ -100,12 +111,12 @@
            </form>
           <% } %>
 
-          <!-- Delete Movie Button -->
-          <% if (cookie.userType === 'admin') { %>
-            <form action="/movies/<%= movie.title %>/delete" method="POST" style="display:inline">
-              <button type="submit">Delete</button>
-            </form>
-            <% } %>
+          <!-- Mark Movie as Sold Button -->
+          <% if (cookie.userType === 'admin' && !movie.is_sold) { %>
+          <form action="/movies/<%= movie.movie_id %>" method="POST" style="display:inline">
+            <button type="submit">Mark as SOLD!</button>
+          </form>
+          <% } %>
 
         </div>
       <% }) %>

@@ -15,7 +15,7 @@ VALUES (1, 'Halloween', 1978, 800, 4, FALSE),
        (5, 'Matilda', 1996, 400, 5, FALSE),
        (5, 'Hook', 1991, 300, 4, FALSE),
        (6, 'Goodfellas', 1990, 700, 4, FALSE),
-       (6, 'Pulp Fiction', 1994, 900, 5, TRUE),
+       (6, 'Pulp Fiction', 1994, 900, 5, FALSE),
        (6, 'Fargo', 1996, 800, 3, FALSE);
 
 -- GENRES:

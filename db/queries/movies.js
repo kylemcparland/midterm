@@ -78,8 +78,21 @@ const deleteMovie = (movieId) => {
       return data;
     })
     .catch(err => {
-      console.log("Error:", err);
+      console.log("Error deleting movie:", err);
     });
 };
 
-module.exports = { getAllMovies, deleteMovie };
+const markAsSold = (movieId) => {
+  const queryParams = [movieId];
+  const queryString = `UPDATE movies SET is_sold = TRUE WHERE id = $1`;
+
+  return db.query(queryString, queryParams)
+    .then(data => {
+      return data;
+    })
+    .catch(err => {
+      console.log("Error marking movie as sold:", err);
+    })
+}
+
+module.exports = { getAllMovies, deleteMovie, markAsSold };
