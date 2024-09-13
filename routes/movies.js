@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getAllMovies, deleteMovie, markAsSold } = require('../db/queries/movies');
 const { appendRatingToMovie } = require('../db/queries/omdb_api');
+const { getFavourites } = require('../db/queries/favourites');
 
 // GET MOVIES:
 router.get("/", async (req, res) => {
@@ -17,6 +18,7 @@ router.get("/", async (req, res) => {
 
     // Fetch movies from DB...
     const movies = await getAllMovies(queryParams)
+    const favourites = await getFavourites(req.cookies.userId)
 
     // Fetch ratings of each movie from API...
     const moviesWithRatings = await appendRatingToMovie(movies);
@@ -26,7 +28,8 @@ router.get("/", async (req, res) => {
     // Send movies with ratings to front end...
     const templateVars = {
       cookie: req.cookies, // Store cookie information in templateVars
-      movies: moviesWithRatings // Store movie database information in templateVars
+      movies: moviesWithRatings, // Store movie database information in templateVars
+      favourites: favourites
     };
     res.render('index', templateVars)
   } catch (error) {

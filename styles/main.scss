@@ -28,11 +28,17 @@ main {
   padding-bottom: 25px;
 }
 
-.product-item {
+.product-item{
   background-color: #d2d7eb;
   padding: 10px;
   width: 225px;
   height: 300px;
+  position: relative; /* Needed to position heart icon */
+}
+
+.product-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 .product-item-SOLD {
@@ -40,6 +46,40 @@ main {
   padding: 10px;
   width: 225px;
   height: 300px;
+  position: relative;
+}
+
+.heart-icon-form {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  margin: 0;
+}
+
+.heart-icon-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 24px; /* Adjust size as needed */
+  color: red; /* Heart icon color */
+}
+
+.heart-icon-button:hover {
+  color: darkred; /* Darken color on hover */
+}
+
+.grey-heart-icon-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 24px; /* Adjust size as needed */
+  color: grey/* Heart icon color */
+}
+
+.grey-heart-icon-button:hover {
+  color: rgb(67, 67, 67); /* Darken color on hover */
 }
 
 #delete_button {

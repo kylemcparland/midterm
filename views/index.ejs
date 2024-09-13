@@ -15,83 +15,50 @@
   <link rel="stylesheet" href="/styles/nav.css">
   <link rel="stylesheet" href="/styles/header.css">
 
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
 </head>
 
 <body>
-
+  <% console.log(`Displaying favourites!!!!`) %>
+  <% console.log(favourites) %>
   <!-- Navbar pulled from partials/ directory -->
   <%- include('partials/_navbar') %>
 
   <header>
-    <div id="searchBarStyling">
-
-      <form action="/movies" method="GET">
-        <span>Search: </span>
-        <input type="text" name="query" placeholder="Movie Title">
-
-        <!-- Sort -->
-        <span>Sort by: </span>
-        <select name="sort" id="sort_by">
-          <option value="">--Select--</option>
-          <option value="genre">Genre</option>
-          <option value="year">Year</option>
-          <option value="priceLowToHigh">Least Expensive</option>
-          <option value="priceHighToLow">Most Expensive</option>
-        </select>
-
-        <button type="submit">Search</button>
-
-        <!-- Advanced Features -->
-        <div id="advanced_features">
-        <h4>Advanced Filters:</h4>
-
-        <!-- Filter for Genre -->
-        <label for="select_genre">Genre:</label>
-        <select id="select_genre" name="select_genre">
-          <option value="0">Anything</option>
-          <option value="1">Horror</option>
-          <option value="2">Thriller</option>
-          <option value="3">Comedy</option>
-          <option value="4">Action</option>
-          <option value="5">Family</option>
-          <option value="6">Crime</option>
-        </select>
-
-        <!-- Max Price -->
-        <label for="max_price">Max Price:</label>
-        <input type="number" min="0" name="max_price" id="max_price" placeholder="$">
-
-        <!-- Year -->
-        <label for="year">Year:</label>
-        <input type="number" min="1976" name="year" id="year" placeholder="1984">
-
-        <!-- Quality -->
-        <label for="min_quality">Minimum Quality:</label>
-        <input type="number" min="1" max="5" name="min_quality" id="min_quality" placeholder="5">
-        </div>
-
-      </form>
-    </div>
+    <!-- Your header content here -->
   </header>
 
   <main>
-
-    <section>
-
-    </section>
-
-    <!-- products go below here! -->
-    <section class = "product-feed">
+    <section class="product-feed">
       <% movies.forEach(movie => { %>
-
-        <!-- Assign unique tag if movie is_sold === true -->
+        <%console.log(movie)%>
         <% if (movie.is_sold) { %>
         <div class="product-item-SOLD">
-          <% } else { %>
-            <div class="product-item">
-            <% } %>
+        <% } else { %>
+          <div class="product-item">
+          <% } %>
+
+          <!-- Heart Icon Button -->
+          <% const isFavourite = favourites.some(fav => fav.movie_id === movie.movie_id); %>
+          <% if (isFavourite) { %>
+            <form action="/favourites/<%= movie.movie_id %>/delete" method="POST" class="heart-icon-form">
+              <input type="hidden" name="movie_id" value="<%= movie.movie_id %>">
+              <button type="submit" class="heart-icon-button">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+              </button>
+            </form>
+          <%} else {%>
+          <form action="/favourites/<%= movie.movie_id %>" method="POST" class="heart-icon-form">
+            <input type="hidden" name="movie_id" value="<%= movie.movie_id %>">
+            <button type="submit" class="grey-heart-icon-button">
+              <i class="fa fa-heart" aria-hidden="true"></i>
+            </button>
+          </form>
+          <%} %>
 
           <h2><%= movie.title %>
           <% if (movie.is_sold) { %>
@@ -102,17 +69,17 @@
           <div class="movie-info">
             <p><%= movie.genre_name %></p>
             <p><%= movie.year %></p>
-            <p>Rent now for: $<%= movie.price / 100%></p>
+            <p>Rent now for: $<%= (movie.price / 100).toFixed(2) %></p>
             <p>Movie quality: <%= movie.quality %></p>
             <p class="rt_score">🍅RT Score: <%= movie.rotten_tomatoes_score %></p>
           </div>
 
           <!-- Delete Movie Button -->
-           <% if (cookie.userType === 'admin') { %>
-           <form action="/movies/<%= movie.movie_id %>/delete" method="POST" style="display:inline">
+          <% if (cookie.userType === 'admin') { %>
+          <form action="/movies/<%= movie.movie_id %>/delete" method="POST" style="display:inline">
             <button type="submit" id="delete_button">Delete</button>
-           </form>
-          <% }%>
+          </form>
+          <% } %>
 
           <!-- Mark Movie as Sold Button -->
           <% if (cookie.userType === 'admin' && !movie.is_sold) { %>
@@ -124,8 +91,6 @@
         </div>
       <% }) %>
     </section>
-
-
   </main>
 
 </body>
