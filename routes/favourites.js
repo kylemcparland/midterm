@@ -6,14 +6,23 @@ const db = require('../db/connection');
 
 
 router.get("/", (req, res) => {
+  if (!req.cookies.userId) {
+    // Redirect to main page if user isn't logged in
+    return res.redirect('/');
+  }
   favourites.getFavourites(req.cookies.userId)
     .then(favouritesData => {
       const templateVars = {
         cookie: req.cookies,
         favourites: favouritesData
       };
-      res.render('favourites', templateVars)
+      res.render('favourites', templateVars);
     })
+    .catch(err => {
+      // Handle any errors that occur while fetching favourites
+      console.error('Error fetching favourites:', err);
+      res.status(500).send('Internal Server Error');
+    });
 });
 
 // Favourite a movie, then reload the page
