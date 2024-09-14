@@ -108,11 +108,14 @@
           </form>
           <%} %>
 
-          <h2><%= movie.title %>
+          <h2 class="titleStyling"><%= movie.title %>
           <% if (movie.is_sold) { %>
             <%= '- SOLD!' %>
             <% } %>
           </h2>
+
+          <img src="<%= movie.image_url %>" alt="<%= movie.title %>" class="movie-poster">
+
 
           <div class="movie-info">
             <p><%= movie.genre_name %></p>
