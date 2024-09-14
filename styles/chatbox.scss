@@ -1,8 +1,13 @@
-#chat-box {
+#chat-area {
+  display: flex;
   position: fixed;
-  z-index: 999;
   bottom: 0;
   right: 0;
+  z-index: 999;
+}
+
+.chat-box {
   background-color: white;
   border: solid, black;
+  margin-right: 10px;
 }

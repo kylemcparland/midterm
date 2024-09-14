@@ -68,30 +68,39 @@ const server = app.listen(PORT, () => {
 
 // SOCKET.IO INITIALIZE
 const { Server } = require('socket.io');
-const io = new Server(server, {
-  cookies: true
-});
+const io = new Server(server);
+const cookie = require("cookie");
 
 io.on('connection', (socket) => {
-  const thisUser = socket.id;
+  // const thisUser = socket.id;
   // User connects, send them to static 'some room' room...
-  socket.join(thisUser);
+  const thisUser = cookie.parse(socket.handshake.headers.cookie).userId;
+  const userType = cookie.parse(socket.handshake.headers.cookie).userType;
+  let joinRoom;
+  // If admin, log into multiple rooms...
+  if (userType === 'admin') {
+    joinRoom = ["1", "2", "3"];
+  } else {
+    joinRoom = thisUser;
+  };
+
+  socket.join(joinRoom);
 
   // User connects...
   console.log('MSG to server: a user connected!');
-  io.to(thisUser).emit('server msg', `Connected to room ${thisUser}!`);
+  io.to(joinRoom).emit('server msg', `Connected to room ${joinRoom}!`);
 
   // User disconnects...
   socket.on('disconnect', () => {
     // Remove user from static 'some room' room...
-    socket.leave(thisUser);
+    socket.leave(joinRoom);
     console.log('user disconnected');
   });
 
   // CHAT MESSAGE recieved from client...
   socket.on('chat message', (msg) => {
     // Send message to static 'some room' room...
-    io.to(thisUser).emit('chat message', msg);
+    io.to(joinRoom).emit('chat message', msg);
     console.log("MSG from client:", msg);
   });
 
