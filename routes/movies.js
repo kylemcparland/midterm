@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
       };
     }));
 
-    console.log(moviesWithRatings);
+    // console.log(moviesWithRatings);
 
     // Send movies with ratings to front end...
     const templateVars = {

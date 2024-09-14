@@ -19,7 +19,7 @@ router.post("/", (req, res) => {
     `;
     const values = [title, year, price, quality, genre_id];
 
-    console.log(values)
+    // console.log(values)
     db.query(queryString, values)
       .then(() => {
         return res.redirect(302, "/")
