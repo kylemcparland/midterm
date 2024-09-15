@@ -1,19 +1,17 @@
 <div id="chat-area">
 
+  <!-- Show chatbox if logged in -->
+<% if (cookie.userType !== undefined) { %>
+  <% if (cookie.userType === 'admin') { %>
+    <button type="submit" id="change-user">Switch Room</button>
+  <% } %>
+
 <div class="chat-box">
 <ul id="messages"></ul>
 <form id="chat-form" action="">
   <input id="input" autocomplete="off" /><button>Send</button>
 </form>
 </div>
-
-<% if (cookie.userType === 'admin') { %>
-<div class="chat-box">
-  <ul id="messages"></ul>
-  <form id="chat-form" action="">
-    <input id="input" autocomplete="off" /><button>Send</button>
-  </form>
-  </div>
 <% } %>
 
 </div>

@@ -3,6 +3,7 @@ const socket = io();
 const form = document.getElementById('chat-form');
 const input = document.getElementById('input');
 const messages = document.getElementById('messages');
+const changeUserButton = document.getElementById('change-user');
 
 // Send form data to server...
 form.addEventListener('submit', (e) => {
@@ -12,6 +13,13 @@ form.addEventListener('submit', (e) => {
     input.value = '';
   }
 });
+
+if (changeUserButton) {
+  // Admin button to change chat window...
+changeUserButton.addEventListener('click', (e) => {
+  messages.innerHTML = '';
+  socket.emit('change-user');
+})};
 
 // Initialized server SERVER MSG confirmation...
 socket.on('server msg', (msg) => {
@@ -29,6 +37,14 @@ socket.on('chat message', (msg) => {
   // window.scrollTo(0, document.body.scrollHeight);
 });
 
+socket.on('load old messages', (oldMessages) => {
+  for (let message in oldMessages) {
+    const item = document.createElement('li');
+    item.textContent = (message + ": " + oldMessages[message]);
+    messages.appendChild(item);
+  }
+})
+
 // Send server connection timeout...
 socket.timeout(5000).emit('request', { foo: 'bar' }, 'baz', (err, response) => {
   if (err) {
@@ -37,6 +53,8 @@ socket.timeout(5000).emit('request', { foo: 'bar' }, 'baz', (err, response) => {
     console.log(response.status); // 'ok'
   }
 });
+
+
 
 // Receive server connection timeout...
 socket.on('request', (arg1, arg2, callback) => {

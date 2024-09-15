@@ -39,7 +39,7 @@ const logoutRoutes = require('./routes/logout');
 const addMovieRoutes = require('./routes/addMovie')
 const moviesRoutes = require('./routes/movies');
 const favouritesRoutes = require('./routes/favourites');
- // const { getAllMovies } = require('./db/queries/movies');
+// const { getAllMovies } = require('./db/queries/movies');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -74,17 +74,30 @@ const cookie = require("cookie");
 io.on('connection', (socket) => {
   // const thisUser = socket.id;
   // User connects, send them to static 'some room' room...
-  const thisUser = cookie.parse(socket.handshake.headers.cookie).userId;
-  const userType = cookie.parse(socket.handshake.headers.cookie).userType;
+  const cookies = cookie.parse(socket.handshake.headers.cookie || '');
+  const thisUser = cookies.userId;
+  const userType = cookies.userType;
+  // console.log("THIS USER:", thisUser);
+  // console.log("USERTYPE", userType);
+
   let joinRoom;
   // If admin, log into multiple rooms...
   if (userType === 'admin') {
-    joinRoom = ["1", "2", "3"];
+    // Default to room 1.
+    joinRoom = "1";
   } else {
     joinRoom = thisUser;
   };
 
   socket.join(joinRoom);
+
+  const testOldMessages = {
+    userId: "Hello this is Kyle",
+    admin: "Hello Kyle I am the admin.",
+    userId: "Hi! Thanks for talking."
+  }
+
+  socket.emit('load old messages', testOldMessages);
 
   // User connects...
   console.log('MSG to server: a user connected!');
@@ -99,10 +112,24 @@ io.on('connection', (socket) => {
 
   // CHAT MESSAGE recieved from client...
   socket.on('chat message', (msg) => {
-    // Send message to static 'some room' room...
-    io.to(joinRoom).emit('chat message', msg);
+    const currentRoom = Array.from(socket.rooms.keys())[1];
+
+    io.to(currentRoom).emit('chat message', msg);
     console.log("MSG from client:", msg);
   });
+
+  // Change user chat as admin...
+  socket.on('change-user', () => {
+    const currentRoom = Array.from(socket.rooms.keys())[1];
+    const newRoom = (currentRoom === "1") ? "3" : "1";
+
+    socket.leave(currentRoom);
+    socket.join(newRoom);
+
+    socket.emit('load old messages', testOldMessages);
+
+    io.to(newRoom).emit('server msg', `Connected to room ${newRoom}!`);
+  })
 
   // Recieve timeout message from client...
   socket.on('request', (arg1, arg2, callback) => {
