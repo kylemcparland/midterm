@@ -37,11 +37,14 @@ socket.on('chat message', (msg) => {
   // window.scrollTo(0, document.body.scrollHeight);
 });
 
+// Populate with old messages...
 socket.on('load old messages', (oldMessages) => {
-  for (let message in oldMessages) {
-    const item = document.createElement('li');
-    item.textContent = (message + ": " + oldMessages[message]);
-    messages.appendChild(item);
+  if (oldMessages) {
+    for (let log of oldMessages) {
+      const item = document.createElement('li');
+      item.textContent = (log.name + ": " + log.content);
+      messages.appendChild(item);
+    }
   }
 })
 

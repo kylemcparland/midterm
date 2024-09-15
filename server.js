@@ -7,6 +7,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan');
 const movies = require('./db/queries/movies');
+const messages = require('./db/queries/messages');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -71,6 +72,11 @@ const { Server } = require('socket.io');
 const io = new Server(server);
 const cookie = require("cookie");
 
+// TEST MESSAGE DB...
+const testOldMessages = [
+  "testing 123"
+]
+
 io.on('connection', (socket) => {
   // const thisUser = socket.id;
   // User connects, send them to static 'some room' room...
@@ -91,13 +97,13 @@ io.on('connection', (socket) => {
 
   socket.join(joinRoom);
 
-  const testOldMessages = {
-    userId: "Hello this is Kyle",
-    admin: "Hello Kyle I am the admin.",
-    userId: "Hi! Thanks for talking."
-  }
-
-  socket.emit('load old messages', testOldMessages);
+  messages.fetchMessagesByRoom(joinRoom)
+  .then(messages => {
+    socket.emit('load old messages', messages);
+  })
+  .catch(error => {
+    console.log("Error fetching old messages:", error);
+  });
 
   // User connects...
   console.log('MSG to server: a user connected!');
@@ -126,9 +132,15 @@ io.on('connection', (socket) => {
     socket.leave(currentRoom);
     socket.join(newRoom);
 
-    socket.emit('load old messages', testOldMessages);
-
-    io.to(newRoom).emit('server msg', `Connected to room ${newRoom}!`);
+    messages.fetchMessagesByRoom(newRoom)
+    .then(messages => {
+      socket.emit('load old messages', messages);
+      io.to(newRoom).emit('server msg', `Connected to room ${newRoom}!`);
+    })
+    .catch(error => {
+      console.log("Error fetching old messages:", error);
+    });
+    
   })
 
   // Recieve timeout message from client...
