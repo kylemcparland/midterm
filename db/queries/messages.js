@@ -7,13 +7,31 @@ const fetchMessagesByRoom = (room) => {
   FROM messages
   JOIN users ON messages.user_id = users.id
   WHERE messages.room_id = ${room}
-  GROUP BY users.name, messages.content;
   `
 
   return db.query(queryString)
-  .then(data => {
-    return data.rows;
-});
+    .then(data => {
+      return data.rows;
+    })
+    .catch(error => {
+      console.log(error);
+    });
 }
 
-module.exports = { fetchMessagesByRoom };
+const addMessageToDatabase = (message) => {
+  const {user_id, content, room_id} = message;
+
+  let queryString = `
+  INSERT INTO messages (user_id, content, room_id) 
+  VALUES (${user_id}, ${content}, ${room_id})
+`
+  return db.query(queryString)
+    .then(data => {
+      return data.rows
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
+
+module.exports = { fetchMessagesByRoom, addMessageToDatabase };

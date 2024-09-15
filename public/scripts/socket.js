@@ -26,15 +26,13 @@ socket.on('server msg', (msg) => {
   const item = document.createElement('li');
   item.textContent = msg;
   messages.appendChild(item);
-  // window.scrollTo(0, document.body.scrollHeight);
 });
 
 // Receive CHAT MESSAGE message from server...
-socket.on('chat message', (msg) => {
+socket.on('chat message', ({name, msg}) => {
   const item = document.createElement('li');
-  item.textContent = msg;
+  item.textContent = (name + ": " + msg);
   messages.appendChild(item);
-  // window.scrollTo(0, document.body.scrollHeight);
 });
 
 // Populate with old messages...
@@ -45,6 +43,11 @@ socket.on('load old messages', (oldMessages) => {
       item.textContent = (log.name + ": " + log.content);
       messages.appendChild(item);
     }
+    // Connection greeting...
+    const greeting = document.createElement('li');
+    greeting.textContent = ("Connected to room!");
+    greeting.style.fontWeight = 'bold';
+    messages.appendChild(greeting);
   }
 })
 
@@ -56,8 +59,6 @@ socket.timeout(5000).emit('request', { foo: 'bar' }, 'baz', (err, response) => {
     console.log(response.status); // 'ok'
   }
 });
-
-
 
 // Receive server connection timeout...
 socket.on('request', (arg1, arg2, callback) => {

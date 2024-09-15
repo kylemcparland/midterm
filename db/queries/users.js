@@ -21,4 +21,11 @@ const getUsers = () => {
     });
 };
 
-module.exports = { getUsers, getUserTypeByEmail };
+const getUserName = (userId) => {
+  return db.query(`SELECT DISTINCT name FROM users WHERE id = ${userId};`)
+    .then(data => {
+      return data.rows;
+    });
+}
+
+module.exports = { getUsers, getUserTypeByEmail, getUserName };

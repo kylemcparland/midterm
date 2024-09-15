@@ -8,6 +8,7 @@ const cookieParser = require('cookie-parser')
 const morgan = require('morgan');
 const movies = require('./db/queries/movies');
 const messages = require('./db/queries/messages');
+const users = require(`./db/queries/users`);
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -107,7 +108,7 @@ io.on('connection', (socket) => {
 
   // User connects...
   console.log('MSG to server: a user connected!');
-  io.to(joinRoom).emit('server msg', `Connected to room ${joinRoom}!`);
+  io.to(joinRoom);
 
   // User disconnects...
   socket.on('disconnect', () => {
@@ -118,10 +119,31 @@ io.on('connection', (socket) => {
 
   // CHAT MESSAGE recieved from client...
   socket.on('chat message', (msg) => {
+    const cookies = cookie.parse(socket.handshake.headers.cookie || '');
+    const thisUser = cookies.userId;
     const currentRoom = Array.from(socket.rooms.keys())[1];
 
-    io.to(currentRoom).emit('chat message', msg);
-    console.log("MSG from client:", msg);
+    // Generate message object for DB...
+    const msgObj = {
+      user_id: thisUser,
+      content: ("'" + msg + "'"),
+      room_id: currentRoom
+    };
+
+    // Add message object to DB...
+    messages.addMessageToDatabase(msgObj);
+
+    users.getUserName(thisUser)
+      .then(nameArr => {
+        const name = nameArr[0].name;
+        io.to(currentRoom).emit('chat message', {name, msg});
+      })
+      .catch(error => {
+        console.log("Error getting username:", error);
+      })
+
+    // Send message to socket...
+    
   });
 
   // Change user chat as admin...
@@ -135,7 +157,7 @@ io.on('connection', (socket) => {
     messages.fetchMessagesByRoom(newRoom)
     .then(messages => {
       socket.emit('load old messages', messages);
-      io.to(newRoom).emit('server msg', `Connected to room ${newRoom}!`);
+      io.to(newRoom);
     })
     .catch(error => {
       console.log("Error fetching old messages:", error);

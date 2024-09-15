@@ -8,7 +8,16 @@
 }
 
 .chat-box {
+  display: inherit;
+  flex-direction: column;
   background-color: white;
   border: solid, black;
   margin-right: 10px;
+}
+
+li {
+  margin-right: 15px;
+  list-style: none;
+  padding-bottom: .5rem;
+  padding-top: .5rem;
 }
