@@ -6,7 +6,7 @@ body {
   min-height: 100vh;
   width: 100%;
   background: base.$background-color;
-  font-size: 1rem; 
+  font-size: 1rem;
   font-weight: 300;
   font-family: "Source Sans 3", sans-serif;
   overflow-x: hidden;
@@ -144,11 +144,11 @@ main {
 .movie-info {
   display: none;
   position: absolute;
-  bottom: 0px; 
-  left: 0px; 
+  bottom: 0px;
+  left: 0px;
   color: base.$font-primary;
   background-color: base.$font-secondary;
-  padding: 10px; 
+  padding: 10px;
   font-size: large;
   width: 100%;
   z-index: 10;
@@ -175,3 +175,4 @@ main {
   margin-bottom: 10px;
   position: relative;
 }
+

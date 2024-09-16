@@ -3,26 +3,49 @@ const router = express.Router();
 const favourites = require('../db/queries/favourites')
 const movies = require('../db/queries/movies')
 const db = require('../db/connection');
+const { fetchMovieImageFromTMDb } = require('../db/queries/omdb_api')
 
 
-router.get("/", (req, res) => {
+const getFavouritesWithImages = async (userId) => {
+  try {
+    // Fetch favourite movie IDs
+    const favouritesData = await favourites.getFavourites(userId);
+
+    // Fetch images for each movie
+    const favouritesWithImages = await Promise.all(favouritesData.map(async (favourite) => {
+      const image_url = await fetchMovieImageFromTMDb(favourite.title); // Fetch image URL
+      return {
+        ...favourite,
+        image_url
+      };
+    }));
+
+    return favouritesWithImages;
+  } catch (err) {
+    console.error('Error fetching favourites with images:', err);
+    throw err;
+  }
+};
+
+
+router.get("/", async (req, res) => {
   if (!req.cookies.userId) {
     // Redirect to main page if user isn't logged in
     return res.redirect('/');
   }
-  favourites.getFavourites(req.cookies.userId)
-    .then(favouritesData => {
-      const templateVars = {
-        cookie: req.cookies,
-        favourites: favouritesData
-      };
-      res.render('favourites', templateVars);
-    })
-    .catch(err => {
-      // Handle any errors that occur while fetching favourites
-      console.error('Error fetching favourites:', err);
-      res.status(500).send('Internal Server Error');
-    });
+
+  try {
+    const favouritesWithImages = await getFavouritesWithImages(req.cookies.userId);
+    const templateVars = {
+      cookie: req.cookies,
+      favourites: favouritesWithImages
+    };
+    res.render('favourites', templateVars);
+  } catch (err) {
+    // Handle any errors that occur while fetching favourites
+    console.error('Error fetching favourites:', err);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 // Favourite a movie, then reload the page

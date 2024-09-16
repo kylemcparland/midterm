@@ -62,6 +62,10 @@
               </button>
             </form>
           <h2><%= favourite.title %></h2>
+
+          <img src="<%= favourite.image_url %>" alt="<%= favourite.title %>" class="movie-poster">
+
+
           <p><%= favourite.genre_name %></p>
           <p><%= favourite.year %></p>
           <p>Rent now for: $<%= favourite.price / 100%></p>
