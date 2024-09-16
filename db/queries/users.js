@@ -22,10 +22,15 @@ const getUsers = () => {
 };
 
 const getUserName = (userId) => {
-  return db.query(`SELECT DISTINCT name FROM users WHERE id = ${userId};`)
+  console.log(userId);
+  if (userId) {
+    return db.query(`SELECT DISTINCT name FROM users WHERE id = ${userId};`)
     .then(data => {
       return data.rows;
     });
+  } else {
+    return "";
+  }
 }
 
 module.exports = { getUsers, getUserTypeByEmail, getUserName };

@@ -1,3 +1,4 @@
+@use "base";
 
 //Controls layout of the Nav
 nav {
@@ -6,12 +7,10 @@ nav {
   justify-content: space-between;
   align-items: center;
   width: 100vw;
-  height: 60px;
-  color: black;
+  height: 66px;
+  color: base.$font-primary;
+  background-color: base.$font-secondary;
   top: 0;
-  border-bottom: solid;
-  border-color: lightgrey;
-  border-width: 1px;
 }
 
 

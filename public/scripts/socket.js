@@ -4,6 +4,21 @@ const form = document.getElementById('chat-form');
 const input = document.getElementById('input');
 const messages = document.getElementById('messages');
 const changeUserButton = document.getElementById('change-user');
+const toggleChat = document.getElementById('toggle-chat');
+const toggleIcon = document.getElementById('toggle-icon');
+const chatArea = document.getElementById('chat-area');
+
+toggleChat.addEventListener('click', function() {
+  if (chatArea.style.bottom === '-400px') {
+    chatArea.style.bottom = '0px';
+    toggleIcon.classList.remove('fa-chevron-up');
+    toggleIcon.classList.add('fa-chevron-down');
+  } else {
+    chatArea.style.bottom = '-400px';
+    toggleIcon.classList.remove('fa-chevron-down');
+    toggleIcon.classList.add('fa-chevron-up');
+  }
+});
 
 // Send form data to server...
 form.addEventListener('submit', (e) => {
@@ -26,6 +41,7 @@ socket.on('server msg', (msg) => {
   const item = document.createElement('li');
   item.textContent = msg;
   messages.appendChild(item);
+  messages.scrollTop = messages.scrollHeight;
 });
 
 // Receive CHAT MESSAGE message from server...
@@ -33,6 +49,7 @@ socket.on('chat message', ({name, msg}) => {
   const item = document.createElement('li');
   item.textContent = (name + ": " + msg);
   messages.appendChild(item);
+  messages.scrollTop = messages.scrollHeight;
 });
 
 // Populate with old messages...
@@ -47,7 +64,10 @@ socket.on('load old messages', (oldMessages) => {
     const greeting = document.createElement('li');
     greeting.textContent = ("Connected to room!");
     greeting.style.fontWeight = 'bold';
+    greeting.style.backgroundColor = '#f9f9f9';
+    greeting.style.border = 'none';
     messages.appendChild(greeting);
+    messages.scrollTop = messages.scrollHeight;
   }
 })
 

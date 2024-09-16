@@ -13,15 +13,28 @@
   <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/nav.css">
   <link rel="stylesheet" href="/styles/login.css" />
+  <link rel="stylesheet" href="/styles/chatbox.css">
+
+  <!-- LOGO FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap" rel="stylesheet">
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/app.js"></script>
+  <!-- SOCKET.IO CODE -->
+  <script defer src="/socket.io/socket.io.js"></script>
+  <script defer src="/scripts/socket.js"></script>
   <script defer src="/scripts/app.js"></script>
 </head>
 
 <body>
-
   <!-- Navbar pulled from partials/ directory -->
   <%- include('partials/_navbar') %>
+  <!-- SOCKET.IO HTML -->
+  <%- include('partials/_chatbox') %>
 
   <header>
     <!-- Empty on login page? -->

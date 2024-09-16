@@ -2,6 +2,12 @@ const { query } = require('express');
 const db = require('../connection');
 
 const fetchMessagesByRoom = (room) => {
+
+  if (!room) {
+    console.error("Room undefined");
+    return Promise.resolve([]);
+  }
+
   let queryString = `
   SELECT users.name, messages.content
   FROM messages
@@ -14,7 +20,7 @@ const fetchMessagesByRoom = (room) => {
       return data.rows;
     })
     .catch(error => {
-      console.log(error);
+      console.log("Error fetching messages by room:", error);
     });
 }
 

@@ -1,10 +1,16 @@
+@use "base";
 
 #logo {
   font-size: 35px;
   margin-left: 40px;
-  color: black;
+  color: base.$font-primary;
+  background-color: base.$special-color;
+  padding: 7px;
   user-select: none;
   text-decoration: none;
+  font-family: "Dela Gothic One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .loginButtonStyling {
