@@ -53,7 +53,7 @@
           <option value="priceHighToLow">Most Expensive</option>
         </select>
 
-        <button type="submit">Search</button>
+        <button type="submit" id="search-button">Search</button>
 
         <!-- Advanced Features -->
         <div id="advanced_features">
@@ -132,21 +132,20 @@
             <p>Rent now for: $<%= (movie.price / 100).toFixed(2) %></p>
             <p>Movie quality: <%= movie.quality %></p>
             <p class="rt_score">🍅RT Score: <%= movie.rotten_tomatoes_score %></p>
-          </div>
-
-          <!-- Delete Movie Button -->
+                      <!-- Delete Movie Button -->
           <% if (cookie.userType === 'admin') { %>
-          <form action="/movies/<%= movie.movie_id %>/delete" method="POST" style="display:inline">
-            <button type="submit" id="delete_button">Delete</button>
-          </form>
-          <% } %>
-
-          <!-- Mark Movie as Sold Button -->
-          <% if (cookie.userType === 'admin' && !movie.is_sold) { %>
-          <form action="/movies/<%= movie.movie_id %>" method="POST" style="display:inline">
-            <button type="submit" id="sold_button">Mark as SOLD!</button>
-          </form>
-          <% } %>
+            <form action="/movies/<%= movie.movie_id %>/delete" method="POST" style="display:inline">
+              <button type="submit" id="delete_button">Delete</button>
+            </form>
+            <% } %>
+  
+            <!-- Mark Movie as Sold Button -->
+            <% if (cookie.userType === 'admin' && !movie.is_sold) { %>
+            <form action="/movies/<%= movie.movie_id %>" method="POST" style="display:inline">
+              <button type="submit" id="sold_button">Mark as SOLD!</button>
+            </form>
+            <% } %>
+          </div>
 
         </div>
       <% }) %>

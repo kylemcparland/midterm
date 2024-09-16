@@ -13,6 +13,12 @@
   font-style: normal;
 }
 
+#logo:hover {
+  background-color: base.$tertiary-color;
+  color: base.$font-secondary;
+  cursor: pointer;
+}
+
 .loginButtonStyling {
   font-size: 20px;
   padding: 15px;
@@ -22,9 +28,15 @@
   margin-left: 5px;
   border-radius: 1.5rem;
   color: white;
-  background-color: blue;
+  background-color: base.$primary-color;
   text-decoration: none;
 }
+
+.loginButtonStyling:hover {
+  cursor: pointer;
+  background-color: base.$secondary-color;
+}
+
 .addMovieButtonStyling {
   font-size: 20px;
   padding: 15px;
@@ -34,8 +46,13 @@
   margin-left: 7px;
   border-radius: 1.5rem;
   color: white;
-  background-color: blue;
+  background-color: base.$primary-color;
   text-decoration: none;
+}
+
+.addMovieButtonStyling:hover {
+  cursor: pointer;
+  background-color: base.$secondary-color;
 }
 
 .favouritesButtonStyling {
@@ -47,15 +64,21 @@
   margin-left: 7px;
   border-radius: 1.5rem;
   color: white;
-  background-color: blue;
+  background-color: base.$primary-color;
   text-decoration: none;
+}
+
+.favouritesButtonStyling:hover {
+  cursor: pointer;
+  background-color: base.$secondary-color;
 }
 
 .loggedInAs {
   display: flex;
+  font-weight: bold;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 5px;
-  font-size: 14px;
+  padding: 8px;
+  user-select: none;
 }

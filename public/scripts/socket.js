@@ -9,12 +9,12 @@ const toggleIcon = document.getElementById('toggle-icon');
 const chatArea = document.getElementById('chat-area');
 
 toggleChat.addEventListener('click', function() {
-  if (chatArea.style.bottom === '-400px') {
+  if (chatArea.style.bottom === '-410px') {
     chatArea.style.bottom = '0px';
     toggleIcon.classList.remove('fa-chevron-up');
     toggleIcon.classList.add('fa-chevron-down');
   } else {
-    chatArea.style.bottom = '-400px';
+    chatArea.style.bottom = '-410px';
     toggleIcon.classList.remove('fa-chevron-down');
     toggleIcon.classList.add('fa-chevron-up');
   }
@@ -64,7 +64,7 @@ socket.on('load old messages', (oldMessages) => {
     const greeting = document.createElement('li');
     greeting.textContent = ("Connected to room!");
     greeting.style.fontWeight = 'bold';
-    greeting.style.backgroundColor = '#f9f9f9';
+    greeting.style.backgroundColor = '#ffffff';
     greeting.style.border = 'none';
     messages.appendChild(greeting);
     messages.scrollTop = messages.scrollHeight;

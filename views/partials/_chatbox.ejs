@@ -1,6 +1,7 @@
     <!-- Show chatbox if logged in -->
+    <% if (cookie.userType !==undefined) { %>
     <div id="chat-area">
-      <% if (cookie.userType !==undefined) { %>
+
         <button type="button" id="toggle-chat"><i class="fas fa-chevron-down" id="toggle-icon"></i></button>
         <% if (cookie.userType==='admin' ) { %>
           <button type="button" id="change-user">Switch Room</button>
