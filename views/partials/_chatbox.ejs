@@ -1,19 +1,19 @@
-    <!-- Show chatbox if logged in -->
-    <% if (cookie.userType !==undefined) { %>
-    <div id="chat-area">
+<!-- Show chatbox if logged in -->
+<% if (cookie.userType !==undefined) { %>
+  <div id="chat-area">
 
-        <button type="button" id="toggle-chat"><i class="fas fa-chevron-down" id="toggle-icon"></i></button>
-        <% if (cookie.userType==='admin' ) { %>
-          <button type="button" id="change-user">Switch Room</button>
-          <% } %>
-            <div class="chat-box">
-              <ul id="messages"></ul>
-              <div id="chat-bottom">
-                <form id="chat-form" action="">
-                  <input id="input" autocomplete="off" placeholder="Type a message..." />
-                  <button type="submit" id="chat-button">Send</button>
-                </form>
-              </div>
-            </div>
-            <% } %>
-    </div>
+    <button type="button" id="toggle-chat"><i class="fas fa-chevron-down" id="toggle-icon"></i></button>
+    <% if (cookie.userType==='admin' ) { %>
+      <button type="button" id="change-user">Switch Room</button>
+      <% } %>
+        <div class="chat-box">
+          <ul id="messages"></ul>
+          <div id="chat-bottom">
+            <form id="chat-form" action="">
+              <input id="input" autocomplete="off" placeholder="Type a message..." />
+              <button type="submit" id="chat-button">Send</button>
+            </form>
+          </div>
+        </div>
+        <% } %>
+  </div>

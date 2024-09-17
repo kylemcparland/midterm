@@ -30,11 +30,8 @@ const appendRatingToMovie = async (array) => {
   for (let movie of array) {
     const rottenTomatoesScore = await searchApiForTitle(movie.title);
     movie.rotten_tomatoes_score = rottenTomatoesScore;
-    // console.log(movie);
   }
   return array;
 };
-
-// appendRatingToMovie(test);
 
 module.exports = { searchApiForTitle, appendRatingToMovie, fetchMovieImageFromTMDb };

@@ -73,11 +73,6 @@ const { Server } = require('socket.io');
 const io = new Server(server);
 const cookie = require("cookie");
 
-// TEST MESSAGE DB...
-const testOldMessages = [
-  "testing 123"
-]
-
 io.on('connection', (socket) => {
   // const thisUser = socket.id;
   // User connects, send them to static 'some room' room...
@@ -99,12 +94,12 @@ io.on('connection', (socket) => {
   socket.join(joinRoom);
 
   messages.fetchMessagesByRoom(joinRoom)
-  .then(messages => {
-    socket.emit('load old messages', messages);
-  })
-  .catch(error => {
-    console.log("Error fetching old messages:", error);
-  });
+    .then(messages => {
+      socket.emit('load old messages', messages);
+    })
+    .catch(error => {
+      console.log("Error fetching old messages:", error);
+    });
 
   // User connects...
   console.log('MSG to server: a user connected!');
@@ -136,14 +131,11 @@ io.on('connection', (socket) => {
     users.getUserName(thisUser)
       .then(nameArr => {
         const name = nameArr[0].name;
-        io.to(currentRoom).emit('chat message', {name, msg});
+        io.to(currentRoom).emit('chat message', { name, msg });
       })
       .catch(error => {
         console.log("Error getting username:", error);
       })
-
-    // Send message to socket...
-    
   });
 
   // Change user chat as admin...
@@ -155,20 +147,17 @@ io.on('connection', (socket) => {
     socket.join(newRoom);
 
     messages.fetchMessagesByRoom(newRoom)
-    .then(messages => {
-      socket.emit('load old messages', messages);
-      io.to(newRoom);
-    })
-    .catch(error => {
-      console.log("Error fetching old messages:", error);
-    });
-    
+      .then(messages => {
+        socket.emit('load old messages', messages);
+        io.to(newRoom);
+      })
+      .catch(error => {
+        console.log("Error fetching old messages:", error);
+      });
   })
 
   // Recieve timeout message from client...
   socket.on('request', (arg1, arg2, callback) => {
-    // console.log(arg1); // { foo: 'bar' }
-    // console.log(arg2); // 'baz'
     callback({
       status: 'ok'
     });
@@ -177,10 +166,9 @@ io.on('connection', (socket) => {
   // Send client timeout message...
   socket.timeout(5000).emit('request', { foo: 'bar' }, 'baz', (err, response) => {
     if (err) {
-      // the client did not acknowledge the event in the given delay
+      // the client did not acknowledge the event
     } else {
       console.log(response.status); // 'ok'
     }
   });
-
 });

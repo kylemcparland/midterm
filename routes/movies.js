@@ -32,8 +32,6 @@ router.get("/", async (req, res) => {
       };
     }));
 
-    // console.log(moviesWithRatings);
-
     // Send movies with ratings to front end...
     const templateVars = {
       cookie: req.cookies, // Store cookie information in templateVars

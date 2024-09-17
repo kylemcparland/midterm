@@ -57,15 +57,12 @@ const getAllMovies = (options) => {
     }
   }
 
-  // console.log(queryString);
-  // console.log(queryParams);
   return db.query(queryString, queryParams)
     .then(data => {
-      // console.log(data.rows)
       return data.rows;
     })
     .catch(err => {
-      console.log("Error:", err);
+      console.log("Error returning movies:", err);
     });
 };
 

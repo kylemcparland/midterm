@@ -42,3 +42,8 @@ header {
   background-color: base.$secondary-color;
   cursor: pointer;
 }
+
+#search-button:active {
+  background-color: base.$tertiary-color;
+  cursor: pointer;
+}

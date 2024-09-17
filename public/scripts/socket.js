@@ -8,7 +8,8 @@ const toggleChat = document.getElementById('toggle-chat');
 const toggleIcon = document.getElementById('toggle-icon');
 const chatArea = document.getElementById('chat-area');
 
-toggleChat.addEventListener('click', function() {
+// Toggle chat button...
+toggleChat.addEventListener('click', function () {
   if (chatArea.style.bottom === '-410px') {
     chatArea.style.bottom = '0px';
     toggleIcon.classList.remove('fa-chevron-up');
@@ -31,10 +32,11 @@ form.addEventListener('submit', (e) => {
 
 if (changeUserButton) {
   // Admin button to change chat window...
-changeUserButton.addEventListener('click', (e) => {
-  messages.innerHTML = '';
-  socket.emit('change-user');
-})};
+  changeUserButton.addEventListener('click', (e) => {
+    messages.innerHTML = '';
+    socket.emit('change-user');
+  })
+};
 
 // Initialized server SERVER MSG confirmation...
 socket.on('server msg', (msg) => {
@@ -45,7 +47,7 @@ socket.on('server msg', (msg) => {
 });
 
 // Receive CHAT MESSAGE message from server...
-socket.on('chat message', ({name, msg}) => {
+socket.on('chat message', ({ name, msg }) => {
   const item = document.createElement('li');
   item.textContent = (name + ": " + msg);
   messages.appendChild(item);
@@ -60,6 +62,7 @@ socket.on('load old messages', (oldMessages) => {
       item.textContent = (log.name + ": " + log.content);
       messages.appendChild(item);
     }
+
     // Connection greeting...
     const greeting = document.createElement('li');
     greeting.textContent = ("Connected to room!");
@@ -74,7 +77,7 @@ socket.on('load old messages', (oldMessages) => {
 // Send server connection timeout...
 socket.timeout(5000).emit('request', { foo: 'bar' }, 'baz', (err, response) => {
   if (err) {
-    // the server did not acknowledge the event in the given delay
+    // the server did not acknowledge the event
   } else {
     console.log(response.status); // 'ok'
   }
@@ -82,8 +85,6 @@ socket.timeout(5000).emit('request', { foo: 'bar' }, 'baz', (err, response) => {
 
 // Receive server connection timeout...
 socket.on('request', (arg1, arg2, callback) => {
-  // console.log(arg1); // { foo: 'bar' }
-  // console.log(arg2); // 'baz'
   callback({
     status: 'ok'
   });

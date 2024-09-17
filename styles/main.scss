@@ -28,7 +28,7 @@ main {
   height: max-content;
   gap: 25px;
   padding-top: 25px;
-  padding-bottom: 25px;
+  padding-bottom: 70px;
 }
 
 .product-item {
@@ -83,12 +83,16 @@ main {
   background: none;
   cursor: pointer;
   padding: 0;
-  font-size: 24px; /* Adjust size as needed */
-  color: base.$special-color; /* Heart icon color */
+  font-size: 24px; 
+  color: base.$special-color; 
 }
 
 .heart-icon-button:hover {
-  color: base.$secondary-color; /* Darken color on hover */
+  color: base.$special-color-hover;
+}
+
+.heart-icon-button:active {
+  color: base.$secondary-color;
 }
 
 .grey-heart-icon-button {
@@ -102,6 +106,10 @@ main {
 
 .grey-heart-icon-button:hover {
   color: #cdcdcd;
+}
+
+.grey-heart-icon-button:active {
+  color: base.$font-primary;
 }
 
 #delete_button {

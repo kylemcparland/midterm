@@ -1,4 +1,4 @@
-//For customizing the elements inside of the header
+@use "base";
 
 #searchBarStyling {
   display: flex;
@@ -9,18 +9,22 @@
   font-size: medium;
 }
 
+#advanced_title {
+  color: base.$font-secondary;
+}
+
 #sort_by {
-  width: 110px
+  width: 110px;
 }
 
 #max_price {
-  width: 50px
+  width: 50px;
 }
 
 #year {
-  width: 70px
+  width: 70px;
 }
 
 #min_quality {
-  width: 50px
+  width: 50px;
 }

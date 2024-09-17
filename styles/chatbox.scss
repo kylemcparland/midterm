@@ -78,6 +78,10 @@ li {
   background-color: base.$special-color-hover;
 }
 
+#chat-button:active {
+  background-color: base.$mega-color;
+}
+
 #change-user {
   background-color: base.$primary-color;
   color: white;
@@ -92,6 +96,10 @@ li {
 
 #change-user:hover {
   background-color: base.$secondary-color;
+}
+
+#change-user:active {
+  background-color: base.$tertiary-color;
 }
 
 #toggle-chat {

@@ -6,19 +6,19 @@
     <span>
       <a class="loginButtonStyling" href="/login">Login</a>
     </span>
-  <% } else { %>
-    <span class="loggedInAs">
-      <% if (cookie.userType === "user") { %>
-        <p>Logged in as: USER</p>
-        <a class="favouritesButtonStyling" href="/favourites">My Favourites</a>
-      <% } %>
+    <% } else { %>
+      <span class="loggedInAs">
+        <% if (cookie.userType==="user" ) { %>
+          <p>Logged in as: USER</p>
+          <a class="favouritesButtonStyling" href="/favourites">My Favourites</a>
+          <% } %>
 
-      <% if (cookie.userType === 'admin') { %>
-        <p>Logged in as: ADMIN</p>
-        <a class="addMovieButtonStyling" href="/addMovie">Add Movie</a>
+            <% if (cookie.userType==='admin' ) { %>
+              <p>Logged in as: ADMIN</p>
+              <a class="addMovieButtonStyling" href="/addMovie">Add Movie</a>
+              <% } %>
+                <a class="loginButtonStyling" href="/logout">Logout</a>
+      </span>
       <% } %>
-      <a class="loginButtonStyling" href="/logout">Logout</a>
-    </span>
-  <% } %>
-  </span>
+        </span>
 </nav>

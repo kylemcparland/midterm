@@ -19,6 +19,12 @@
   cursor: pointer;
 }
 
+#logo:active {
+  background-color: base.$mega-color;
+  color: base.$tertiary-color;
+  cursor: pointer;
+}
+
 .loginButtonStyling {
   font-size: 20px;
   padding: 15px;
@@ -35,6 +41,11 @@
 .loginButtonStyling:hover {
   cursor: pointer;
   background-color: base.$secondary-color;
+}
+
+.loginButtonStyling:active {
+  cursor: pointer;
+  background-color: base.$tertiary-color;
 }
 
 .addMovieButtonStyling {
@@ -55,6 +66,11 @@
   background-color: base.$secondary-color;
 }
 
+.addMovieButtonStyling:active {
+  cursor: pointer;
+  background-color: base.$tertiary-color;
+}
+
 .favouritesButtonStyling {
   font-size: 20px;
   padding: 15px;
@@ -71,6 +87,11 @@
 .favouritesButtonStyling:hover {
   cursor: pointer;
   background-color: base.$secondary-color;
+}
+
+.favouritesButtonStyling:active {
+  cursor: pointer;
+  background-color: base.$tertiary-color;
 }
 
 .loggedInAs {

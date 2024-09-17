@@ -27,7 +27,6 @@
   <!-- SOCKET.IO CODE -->
   <script defer src="/socket.io/socket.io.js"></script>
   <script defer src="/scripts/socket.js"></script>
-  <script defer src="/scripts/app.js"></script>
 </head>
 
 <body>
@@ -57,7 +56,7 @@
 
         <!-- Advanced Features -->
         <div id="advanced_features">
-        <h4>Advanced Filters:</h4>
+        <h4 id="advanced_title">Advanced Filters:</h4>
 
         <!-- Filter for Genre -->
         <label for="select_genre">Genre:</label>
@@ -88,8 +87,6 @@
     </div>
   </header>
 
-
-
   <main>
     <section class="product-feed">
       <% movies.forEach(movie => { %>
@@ -100,6 +97,7 @@
           <% } %>
 
           <!-- Heart Icon Button -->
+          <% if (cookie.userType === 'user') { %>
           <% const isFavourite = favourites.some(fav => fav.movie_id === movie.movie_id); %>
           <% if (isFavourite) { %>
             <form action="/favourites/<%= movie.movie_id %>/delete" method="POST" class="heart-icon-form">
@@ -115,7 +113,8 @@
               <i class="fa fa-heart" aria-hidden="true"></i>
             </button>
           </form>
-          <%} %>
+          <% } %>
+          <% } %>
 
           <h2 class="titleStyling"><%= movie.title %>
           <% if (movie.is_sold) { %>
@@ -124,7 +123,6 @@
           </h2>
 
           <img src="<%= movie.image_url %>" alt="<%= movie.title %>" class="movie-poster">
-
 
           <div class="movie-info">
             <p><%= movie.genre_name %></p>
@@ -151,7 +149,5 @@
       <% }) %>
     </section>
   </main>
-
 </body>
-
 </html>

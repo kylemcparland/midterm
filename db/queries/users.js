@@ -10,7 +10,7 @@ const getUserTypeByEmail = (email) => {
       return isAdmin;
     })
     .catch(err => {
-      console.log("Error:", err);
+      console.log("Error getting user type:", err);
     });
 };
 
@@ -22,12 +22,11 @@ const getUsers = () => {
 };
 
 const getUserName = (userId) => {
-  console.log(userId);
   if (userId) {
     return db.query(`SELECT DISTINCT name FROM users WHERE id = ${userId};`)
-    .then(data => {
-      return data.rows;
-    });
+      .then(data => {
+        return data.rows;
+      });
   } else {
     return "";
   }
