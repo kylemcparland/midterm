@@ -198,12 +198,13 @@ main {
 .carousel-slide {
   display: flex;
   width: 96%;
+  padding-left: 10px;
 }
 
 .featuredMovieSlider {
   flex: 0 0 19%;
   box-sizing: border-box;
-  margin: 0 12px;
+  margin: 0 14px;
   text-align: center;
   background-color: #2e2e2e;
 }
@@ -224,7 +225,7 @@ main {
 }
 
 .prev {
-  left: 11px;
+  left: 8px;
 }
 
 .next {
