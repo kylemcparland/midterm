@@ -3,11 +3,6 @@ $("#logo").on("click", () => {
   console.log("Clicked on logo");
 })
 
-// Client facing scripts here
-$("#logo").on("click", () => {
-  console.log("Clicked on logo");
-})
-
 $(document).ready(function() {
   const $carousel = $('.carousel');
   const $carouselSlide = $('.carousel-slide');
