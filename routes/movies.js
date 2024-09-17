@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { getAllMovies, deleteMovie, markAsSold } = require('../db/queries/movies');
-const { appendRatingToMovie } = require('../db/queries/omdb_api');
+const { appendRatingToMovie, fetchMovieImageFromTMDb } = require('../db/queries/omdb_api');
 const { getFavourites } = require('../db/queries/favourites');
-const { fetchMovieImageFromTMDb } = require('../db/queries/omdb_api')
 
 // GET MOVIES:
 router.get("/", async (req, res) => {
@@ -32,13 +31,14 @@ router.get("/", async (req, res) => {
       };
     }));
 
-    // console.log(moviesWithRatings);
+    const top10NewestMovies = moviesWithImages.slice().sort((a, b) => b.year - a.year).slice(0, 10);
 
     // Send movies with ratings to front end...
     const templateVars = {
       cookie: req.cookies, // Store cookie information in templateVars
       movies: moviesWithImages, // Store movie database information in templateVars
-      favourites: favourites
+      favourites: favourites,
+      top10NewestMovies: top10NewestMovies
     };
     res.render('index', templateVars)
   } catch (error) {

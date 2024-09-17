@@ -176,3 +176,62 @@ main {
   position: relative;
 }
 
+.carousel-container {
+  position: relative;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+  display: flex;
+  width: 96%;
+}
+
+.featuredMovieSlider {
+  flex: 0 0 19%;
+  box-sizing: border-box;
+  margin: 0 12px;
+  text-align: center;
+  background-color: #2e2e2e;
+}
+
+.featuredMoviePosterStyling {
+  width: 175px;
+  padding-top: 20px;
+}
+
+.featuredMoviesOfTheWeekH2 {
+  align-self: center;
+}
+
+.featuredMoviesTitleSize {
+  font-size: 18px;
+  color: white;
+  padding: 10px 0;
+}
+
+.prev {
+  left: 11px;
+}
+
+.next {
+  right: 25px;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
