@@ -35,6 +35,27 @@
   <!-- SOCKET.IO HTML -->
   <%- include('partials/_chatbox') %>
 
+  <!-- Carousel html -->
+  <h2 class="featuredMoviesOfTheWeekH2">Featured Movies of the Week</h2>
+  <section id="featured-movies">
+    <div class="carousel-container">
+      <button class="carousel-button prev">‹</button>
+      <div class="carousel">
+        <div class="carousel-slide">
+          <% top10NewestMovies.forEach(movie => { %>
+            <div class="featuredMovieSlider">
+              <img src="<%= movie.image_url %>" alt="<%= movie.title %>" class="featuredMoviePosterStyling">
+              <h3 class="featuredMoviesTitleSize">
+                <%= movie.title %>
+              </h3>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+      <button class="carousel-button next">›</button>
+    </div>
+  </section>
+
   <header>
     <div id="searchBarStyling">
 

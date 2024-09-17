@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
       })
       .catch(err => {
        console.log('query error:', err);
-       res.status(500).send('Error submitting form');
+       res.status(500).send('Error: Please enter all forms with the required Information');
       })
 })
 
