@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="/styles/nav.css">
   <link rel="stylesheet" href="/styles/header.css">
   <link rel="stylesheet" href="/styles/chatbox.css">
+  <link rel="stylesheet" href="/styles/addMovie.css">
 
   <!-- LOGO FONT -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,54 +35,50 @@
 <body>
   <!-- Navbar pulled from partials/ directory -->
   <%- include('partials/_navbar') %>
-  <!-- SOCKET.IO HTML -->
-  <%- include('partials/_chatbox') %>
+    <!-- SOCKET.IO HTML -->
+    <%- include('partials/_chatbox') %>
 
-    <main>
+      <main>
 
-      <form action="/addMovie" method="POST" id="addMovieForm">
+        <div class="addMovieContainerStyling">
+            <form action="/addMovie" method="POST" id="addMovieForm">
 
-        <div>
-          <label for="addMovieForm_Title">Title:</label>
-          <input type="text" id="title" name="title">
+              <div class="movieTitle">
+                <input type="text" id="title" name="title" placeholder=" Title" class="roundMe">
+              </div>
+
+              <div class="moviePrice">
+                <input type="number" id="price" name="price" placeholder=" Price" class="roundMe">
+              </div>
+
+              <div class="movieQuality">
+                <input type="number" id="quality" name="quality" placeholder=" Quality" class="roundMe">
+              </div>
+
+              <div class="movieYear">
+                <input type="number" name="year" id="year" placeholder=" Year" class="roundMe">
+              </div>
+
+              <div class="movieGenre">
+                <select id="genre_id" name="genre_id" class="roundMe">
+                  <option>--Select Genre--</option>
+                  <option value="1">Horror</option>
+                  <option value="2">Thriller</option>
+                  <option value="3">Comedy</option>
+                  <option value="4">Action</option>
+                  <option value="5">Family</option>
+                  <option value="6">Crime</option>
+                </select>
+              </div>
+
+              <div class="addMovieButton">
+                <button type="submit" id="search-button">Add Movie</button>
+              </div>
+
+            </form>
         </div>
 
-        <div>
-          <label for="addMovieForm_Year">Year:</label>
-          <input type="text" name="year" id="year">
-        </div>
-
-        <div>
-          <label for="addMovieForm_Price">Price:</label>
-          <input type="text" id="price" name="price">
-        </div>
-
-        <div>
-          <label for="addMovieForm_Quality">Quality:</label>
-          <input type="text" id="quality" name="quality">
-        </div>
-
-        <div>
-          <label for="addMovie_Genres:">Genres:</label>
-          <select id="genre_id " name="genre_id">
-              <option value="1">Horror</option>
-              <option value="2">Thriller</option>
-              <option value="3">Comedy</option>
-              <option value="4">Action</option>
-              <option value="5">Family</option>
-              <option value="6">Crime</option>
-          </select>
-        </div> 
-
-        <div>
-          <button type="submit">Add</button>
-        </div>
-
-
-
-      </form>
-
-    </main>
+      </main>
 
 </body>
 

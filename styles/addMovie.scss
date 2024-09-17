@@ -1,0 +1,29 @@
+.addMovieContainerStyling {
+  display: flex;
+  padding: 30px;
+  margin-top: 80px;
+  height: 250px;
+  font-size: 18px;
+  background-color: black;
+  border: none;
+  border-radius: 8px;
+  color: white;
+}
+
+.movieTitle, .movieYear, .moviePrice, .movieQuality {
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.addMovieButton {
+display: flex;
+flex-direction: row;
+justify-content: center;
+padding-top: 16px;
+}
+
+.roundMe {
+  border-radius: 10mm;
+  border: none;
+}
+
