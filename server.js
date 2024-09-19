@@ -118,10 +118,13 @@ io.on('connection', (socket) => {
     const thisUser = cookies.userId;
     const currentRoom = Array.from(socket.rooms.keys())[1];
 
+    // Scrub single quotes from msg...
+    const safeMsg = msg.replace(/'/g, "");
+
     // Generate message object for DB...
     const msgObj = {
       user_id: thisUser,
-      content: ("'" + msg + "'"),
+      content: ("'" + safeMsg + "'"),
       room_id: currentRoom
     };
 

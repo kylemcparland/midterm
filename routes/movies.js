@@ -38,7 +38,8 @@ router.get("/", async (req, res) => {
       cookie: req.cookies, // Store cookie information in templateVars
       movies: moviesWithImages, // Store movie database information in templateVars
       favourites: favourites,
-      top10NewestMovies: top10NewestMovies
+      top10NewestMovies: top10NewestMovies,
+      currentUrl: req.url
     };
     res.render('index', templateVars)
   } catch (error) {

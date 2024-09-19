@@ -36,7 +36,7 @@
   <%- include('partials/_navbar') %>
   <!-- SOCKET.IO HTML -->
   <%- include('partials/_chatbox') %>
-
+  <% if (currentUrl === "/") { %>
   <!-- Carousel html -->
   <h2 class="featuredMoviesOfTheWeekH2">Featured Movies of the Week</h2>
   <section id="featured-movies">
@@ -57,6 +57,7 @@
       <button class="carousel-button next">›</button>
     </div>
   </section>
+  <% } %>
 
   <header>
     <div id="searchBarStyling">
@@ -150,7 +151,7 @@
           <div class="movie-info">
             <p><%= movie.genre_name %></p>
             <p><%= movie.year %></p>
-            <p>Rent now for: $<%= (movie.price / 100).toFixed(2) %></p>
+            <p>Buy now for: $<%= (movie.price / 100).toFixed(2) %></p>
             <p>Movie quality: <%= movie.quality %></p>
             <p class="rt_score">🍅RT Score: <%= movie.rotten_tomatoes_score %></p>
                       <!-- Delete Movie Button -->
